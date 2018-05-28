@@ -1,0 +1,39 @@
+ <select id="trollName">
+  <option value="kanaya">Kanaya</option>
+  <option value="numericalBishop">numericalBishop</option>
+</select> 
+<input type="text" id="english" onkeyup="trollText()">
+</input>
+
+<input type="text" id="troll">
+</input>
+
+<script>
+function trollText(){
+	var original = document.getElementById("english").value;
+	var result = "";
+	if (trollName.value == "kanaya") {
+		result = kanayaText(original);
+	} else if (trollName.value == "numericalBishop") {
+		result = bishopText(original);
+	}
+	document.getElementById("troll").value = result;
+}
+function kanayaText(original){
+	var initialCaps = original.replace(/\w\S*/g, function(txt){
+			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
+			});
+	return initalCaps;
+}
+
+function bishopText(original){
+	var initialDups = original.replace(/\w\S*/g, function(txt){
+			if (txt.charAt(0) == txt.charAt(0).toUpperCase()){
+				return txt.charAt(0).repeat(4) + txt.substr(1);
+			} else {
+				return txt.charAt(0).repeat(2) + txt.substr(1);
+			}
+			});
+	return initialDups;
+}
+</script>
