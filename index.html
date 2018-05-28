@@ -1,14 +1,4 @@
- <select id="trollName">
-  <option value="kanaya">Kanaya</option>
-  <option value="numericalBishop">numericalBishop</option>
-</select> 
-<input type="text" id="english" onkeyup="trollText()">
-</input>
-
-<input type="text" id="troll">
-</input>
-
-<script>
+ <script>
 function trollText(){
 	var original = document.getElementById("english").value;
 	var result = "";
@@ -16,6 +6,8 @@ function trollText(){
 		result = kanayaText(original);
 	} else if (trollName.value == "numericalBishop") {
 		result = bishopText(original);
+	} else if (trollName.value == "veevve") {
+		result = veveText(original);
 	}
 	document.getElementById("troll").value = result;
 }
@@ -36,4 +28,61 @@ function bishopText(original){
 			});
 	return initialDups;
 }
+
+function veveText(original){
+	trollString = "";
+	for (var i = 0; i < original.length; i++){
+		character = original.charAt(i);
+		var num = Math.random();
+		if (num < 1.0/10 && keyboardAdjacencies[character]) {
+				var num2 = Math.random();
+				trollString += keyboardAdjacencies[character][Math.floor(num2 * Math.floor(keyboardAdjacencies[character].length))];
+			}
+		else { 
+			trollString += character;
+		}
+	}
+	return trollString;
+}
+
+var keyboardAdjacencies = 
+{'q': ['w','a','s'],
+'w': ['q','e','a','s','d'],
+'e': ['w','r','s','d','f'],
+'r': ['e','t','d','f','g'],
+'t': ['r','y','f','g','h'],
+'y': ['t','u','g','h','j'],
+'u': ['y','i','h','j','k'],
+'i': ['u','o','j','k','l'],
+'o': ['i','p','j','k','l'],
+'p': ['o','l'],
+'a': ['q','w','s','z'],
+'s': ['q','w','e','a','d','z','x'],
+'d': ['w','e','r','s','f','x','c'],
+'f': ['e','r','t','d','g','c','v'],
+'g': ['r','t','y','f','h','v','b'],
+'h': ['t','y','u','g','j','b','n'],
+'j': ['y','u','i','h','k','n','m'],
+'k': ['u','i','o','j','l','m'],
+'l': ['o','p','k'],
+'z': ['a','s','x'],
+'x': ['z','s','d','c'],
+'c': ['x','d','f','v'],
+'v': ['c','f','g','b'],
+'b': ['v','g','h','n'],
+'n': ['b','h','j','m'],
+'m': ['n','j','k']}
 </script>
+
+ <select id="trollName">
+  <option value="kanaya">Kanaya</option>
+  <option value="numericalBishop">numericalBishop</option>
+  <option value="veevve">Veevve</option>
+</select> 
+<p></p>
+<textarea id="english" onkeyup="trollText()">
+</textarea>
+
+<textarea id="troll">
+</textarea>
+
