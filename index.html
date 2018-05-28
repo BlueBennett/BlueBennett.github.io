@@ -8,6 +8,8 @@ function trollText(){
 		result = bishopText(original);
 	} else if (trollName.value == "veevve") {
 		result = veveText(original);
+	} else if (trollName.value == "scylla") {
+		result = scyllaText(original);
 	}
 	document.getElementById("troll").value = result;
 }
@@ -45,6 +47,10 @@ function veveText(original){
 	return trollString;
 }
 
+function scyllaText(original){
+	return original.replace(/[Oo]/g, "\u00D6");
+}
+
 var keyboardAdjacencies = 
 {'q': ['w','a','s'],
 'w': ['q','e','a','s','d'],
@@ -78,11 +84,13 @@ var keyboardAdjacencies =
   <option value="kanaya">Kanaya</option>
   <option value="numericalBishop">numericalBishop</option>
   <option value="veevve">Veevve</option>
+  <option value="scylla">Scylla</option>
 </select> 
 <p></p>
-<textarea id="english" onkeyup="trollText()">
+<textarea id="english">
 </textarea>
 
 <textarea id="troll">
 </textarea>
-
+<p></p>
+<button id="convert" onclick="trollText()">Convert!</button>
