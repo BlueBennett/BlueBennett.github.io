@@ -24,8 +24,8 @@ function kanayaText(original){
 
 function cecileText(original){
 	var initialCaps = original.replace(/\w\S*/g, function(txt){
-			if (txt.length > 2) {
-				return txt.charAt(0).toUpperCase() + txt.substr(1,txt.length-2).toLowerCase() + txt.charAt(txt.length-1).toUpperCase();
+			if (txt.length > 1) {
+				return txt.substr(0,txt.length-1).toLowerCase() + txt.charAt(txt.length-1).toUpperCase();
 			} else {
 				return txt.toUpperCase();
 			}});
