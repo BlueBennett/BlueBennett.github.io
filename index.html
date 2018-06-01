@@ -10,6 +10,8 @@ function trollText(){
 		result = veveText(original);
 	} else if (trollName.value == "scylla") {
 		result = scyllaText(original);
+	} else if (trollName.value == "cecile") {
+		result = cecileText(original);
 	}
 	document.getElementById("troll").value = result;
 }
@@ -17,6 +19,18 @@ function kanayaText(original){
 	var initialCaps = original.replace(/\w\S*/g, function(txt){
 			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
 			});
+	return initialCaps;
+}
+
+function cecileText(original){
+	var initialCaps = original.replace(/\w\S*/g, function(txt){
+			if (txt.length > 2) {
+				return txt.charAt(0).toUpperCase() + txt.substr(1,txt.length-2).toLowerCase() + txt.charAt(txt.length-1).toUpperCase();
+			} else {
+				return txt.toUpperCase();
+			}});
+			
+			
 	return initialCaps;
 }
 
@@ -80,17 +94,19 @@ var keyboardAdjacencies =
 'm': ['n','j','k']}
 </script>
 
- <select id="trollName">
+ <select id="trollName" style="border: 2px solid black">
   <option value="kanaya">Kanaya</option>
   <option value="numericalBishop">numericalBishop</option>
   <option value="veevve">Veevve</option>
   <option value="scylla">Scylla</option>
+  <option value="cecile">Cecile</option>
 </select> 
-<p></p>
-<textarea id="english">
+<p>Enter Text:</p>
+
+<textarea id="english" rows=10 cols=40 style="border: 2px solid black">
 </textarea>
 
-<textarea id="troll">
+<textarea id="troll" rows=10 cols=40 style="border: 2px solid black">
 </textarea>
 <p></p>
 <button id="convert" onclick="trollText()">Convert!</button>
