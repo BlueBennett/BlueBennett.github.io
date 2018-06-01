@@ -25,7 +25,11 @@ function kanayaText(original){
 function cecileText(original){
 	var initialCaps = original.replace(/\w\S*/g, function(txt){
 			if (txt.length > 1) {
-				return txt.substr(0,txt.length-1).toLowerCase() + txt.charAt(txt.length-1).toUpperCase();
+				if (".,!?".indexOf(txt.charAt(txt.length-1)) != -1){
+					return txt.substr(0,txt.length-2) + txt.charAt(txt.length-2).toUpperCase()+txt.charAt(txt.length-1);
+				} else {
+					return txt.substr(0,txt.length-1) + txt.charAt(txt.length-1).toUpperCase();
+				}
 			} else {
 				return txt.toUpperCase();
 			}});
