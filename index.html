@@ -1,20 +1,34 @@
- <script>
+<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+<script>
 function trollText(){
 	var original = document.getElementById("english").value;
 	var result = "";
 	if (trollName.value == "kanaya") {
 		result = kanayaText(original);
-	} else if (trollName.value == "numericalBishop") {
-		result = bishopText(original);
-	} else if (trollName.value == "veevve") {
-		result = veveText(original);
-	} else if (trollName.value == "scylla") {
-		result = scyllaText(original);
-	} else if (trollName.value == "cecile") {
-		result = cecileText(original);
+	} else if (trollName.value == "novasa") {
+		result = novasaText(original);	
+	} else if (trollName.value == "komori") {
+		result = komoriText(original);
+	} else if (trollName.value == "machni") {
+		result = machniText(original);
+	} else if (trollName.value == "korsak") {
+		result = korsakText(original);
+	} else if (trollName.value == "zeulin") {
+		result = zeulinText(original);
+	} else if (trollName.value == "vathsa") {
+		result = vathsaText(original);
+	} else if (trollName.value == "nephra") {
+		result = nephraText(original);
+	} else if (trollName.value == "seliah") {
+		result = seliahText(original);
+	} else if (trollName.value == "hundra") {
+		result = hundraText(original);
+	} else if (trollName.value == "terran") {
+		result = terranText(original);
 	}
 	document.getElementById("troll").value = result;
 }
+
 function kanayaText(original){
 	var initialCaps = original.replace(/\w\S*/g, function(txt){
 			return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -22,90 +36,109 @@ function kanayaText(original){
 	return initialCaps;
 }
 
-function cecileText(original){
-	function capLast(txt){
-			if (txt.length > 1) {
-				var last = txt.charAt(txt.length-1);
-				console.log(last);
-				if (last == "." || last == "?" || last == "!" || last == ","){
-					console.log(txt.substr(0,txt.length-2))
-					return capLast(txt.substr(0,txt.length-1))+txt.charAt(txt.length-1);
-				} else {
-					return txt.substr(0,txt.length-1) + txt.charAt(txt.length-1).toUpperCase();
-				}
-			} else {
-				return txt.toUpperCase();
-			}}
-	var finalCaps = original.replace(/\w\S*/g, capLast);		
-	return "CD: "+finalCaps;
-}
-
-function bishopText(original){
-	var initialDups = original.replace(/\w\S*/g, function(txt){
-			if (txt.charAt(0) == txt.charAt(0).toUpperCase()){
-				return txt.charAt(0).repeat(4) + txt.substr(1);
-			} else {
-				return txt.charAt(0).repeat(2) + txt.substr(1);
-			}
-			});
-	return initialDups;
-}
-
-function veveText(original){
-	trollString = "";
+function novasaText(original){
+	var replaced = "";
 	for (var i = 0; i < original.length; i++){
-		character = original.charAt(i);
-		var num = Math.random();
-		if (num < 1.0/10 && keyboardAdjacencies[character]) {
-				var num2 = Math.random();
-				trollString += keyboardAdjacencies[character][Math.floor(num2 * Math.floor(keyboardAdjacencies[character].length))];
+		letterToAdd = original.charAt(i);
+		if (letterToAdd == 'k') {
+			letterToAdd = 'K';
+		} else if (letterToAdd == 'c' || letterToAdd == 'C') {
+			if (i + 1 < original.length && 'ieyIEY'.indexOf(original.charAt(i+1)) != -1) {
+				letterToAdd = 's';
+			} else if (i + 1 < original.length && 'hH'.indexOf(original.charAt(i+1)) != -1) {
+				letterToAdd = 'k';
+			} else {
+				letterToAdd = 'K';
 			}
-		else { 
-			trollString += character;
+		
 		}
+		replaced += letterToAdd;
 	}
-	return trollString;
+	return replaced;
 }
 
-function scyllaText(original){
-	return original.replace(/[Oo]/g, "\u00D6");
+function komoriText(original){
+	var replaced = original.replace(/[sS]/g, "5");
+	return replaced;
 }
 
-var keyboardAdjacencies = 
-{'q': ['w','a','s'],
-'w': ['q','e','a','s','d'],
-'e': ['w','r','s','d','f'],
-'r': ['e','t','d','f','g'],
-'t': ['r','y','f','g','h'],
-'y': ['t','u','g','h','j'],
-'u': ['y','i','h','j','k'],
-'i': ['u','o','j','k','l'],
-'o': ['i','p','j','k','l'],
-'p': ['o','l'],
-'a': ['q','w','s','z'],
-'s': ['q','w','e','a','d','z','x'],
-'d': ['w','e','r','s','f','x','c'],
-'f': ['e','r','t','d','g','c','v'],
-'g': ['r','t','y','f','h','v','b'],
-'h': ['t','y','u','g','j','b','n'],
-'j': ['y','u','i','h','k','n','m'],
-'k': ['u','i','o','j','l','m'],
-'l': ['o','p','k'],
-'z': ['a','s','x'],
-'x': ['z','s','d','c'],
-'c': ['x','d','f','v'],
-'v': ['c','f','g','b'],
-'b': ['v','g','h','n'],
-'n': ['b','h','j','m'],
-'m': ['n','j','k']}
+function machniText(original){
+	var replaced = original.replace(/\./g, "(・ω・)");
+	return replaced;
+}
+
+function korsakText(original){
+	var replaced = original.replace(/p/g, "|>");
+	return replaced;
+}
+
+function zeulinText(original){
+	var replaced = original.replace(/[^A-Za-z0-9]/g, function(x) { return x+x; });
+	return replaced;
+}
+
+function vathsaText(original){
+	var replaced = original.replace(/[oO]/g, "0");
+	replaced = replaced.replace(/[A-Z]/g, function(x) { return x.toLowerCase(); });
+	return replaced;
+}
+
+function nephraText(original) {
+	var replaced = "";
+	var capThisWord = false;
+		for (var i = 0; i < original.length; i++){
+			letterToAdd = original.charAt(i);
+			if (i > 0){
+				prevLetter = original.charAt(i-1);
+				if (".?! ".indexOf(prevLetter) != -1 && i+1 < original.length && 
+				".?! ".indexOf(letterToAdd) == -1){
+					if (capThisWord) {
+						letterToAdd = letterToAdd.toUpperCase();
+					} else {
+						letterToAdd = letterToAdd.toLowerCase();
+					}
+					capThisWord = !capThisWord;
+				}
+			}
+			replaced += letterToAdd;
+		}
+	return replaced;
+}
+
+function seliahText(original){
+	var replaced = original.replace(/so/g, "sew");
+	return replaced;
+}
+
+function hundraText(original){
+	var replaced = original.replace(/[sS]/g, "7");
+	replaced = replaced.replace(/[gG]/g, "9");
+	replaced = replaced.replace(/[lL]/g, "1");
+	return replaced;
+}
+
+function terranText(original){
+	var sentences = original.match(/([^\.!\?]+[\.!\?]+)|([^\.!\?]+$)/g);
+	var replacedText = "";
+	for (var i = 0; i < sentences.length; i++) {
+		replacedText += "}" + sentences[i].trim() + "{ ";
+	}
+	return replacedText;
+}
 </script>
 
- <select id="trollName" style="border: 2px solid black">
+<select id="trollName" style="border: 2px solid black">
   <option value="kanaya">Kanaya</option>
-  <option value="numericalBishop">numericalBishop</option>
-  <option value="veevve">Veevve</option>
-  <option value="scylla">Scylla</option>
-  <option value="cecile">Cecile</option>
+  <option value="novasa">apocalypseKiller</option>
+  <option value="komori">carbineSeafoam</option>
+  <option value="machni">indigoUranus</option>
+  <option value="korsak">mechaFurry</option>
+  <option value="zeulin">whiteJester</option>
+  <option value="vathsa">temporalPhobic</option>
+  <option value="nephra">hollowCommander</option>
+  <option value="seliah">angelToe</option>
+  <option value="hundra">vitalAlchemist</option>
+  <option value="terran">heraldicDoctor</option>
 </select> 
 <p>Enter Text:</p>
 
